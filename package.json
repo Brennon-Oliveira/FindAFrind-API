@@ -7,5 +7,12 @@
     "test": "vitest run --dir src/use-cases"
   },
   "author": "Brennon Gabriel de Oliveira",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/supertest": "^6.0.2",
+    "prisma": "^6.0.1",
+    "supertest": "^7.0.0",
+    "vitest": "^2.1.8"
+  }
 }
