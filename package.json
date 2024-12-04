@@ -7,7 +7,11 @@
     "build": "tsc .",
     "start:dev": "tsup",
     "test": "vitest run --dir src/use-cases",
-    "test:watch": "vitest --dir src/use-cases"
+    "test:watch": "vitest --dir src/use-cases",
+    "prisma": "prisma",
+    "prisma:migrate": "npm run prisma migrate",
+    "prisma:ui": "npm run prisma ui",
+    "prisma:deploy": "npm run prisma deploy"
   },
   "author": "Brennon Gabriel de Oliveira",
   "license": "MIT",
