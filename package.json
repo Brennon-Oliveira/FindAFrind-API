@@ -1,0 +1,11 @@
+{
+  "name": "findafrind-api",
+  "version": "1.0.0",
+  "description": "An app to adopt pets",
+  "main": "src/server.ts",
+  "scripts": {
+    "test": "vitest run --dir src/use-cases"
+  },
+  "author": "Brennon Gabriel de Oliveira",
+  "license": "MIT"
+}
