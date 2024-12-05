@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ../api_nodejs_com_solid_db_data:/var/lib/postgresql/data
+      - ../FindAFrindApi_db:/var/lib/postgresql/data
 
 volumes:
   db_data:
