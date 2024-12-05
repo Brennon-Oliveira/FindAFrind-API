@@ -1,5 +1,5 @@
 import { PrismaOrgsRepository } from '@/repositories/prisma/prisma-orgs-repository'
-import { UpdateOrgUseCase } from '../update-org-use-case'
+import { UpdateOrgUseCase } from '../org/update-org-use-case'
 
 export const makeUpdateOrgUseCase = (): UpdateOrgUseCase => {
   const orgsRepository = new PrismaOrgsRepository()

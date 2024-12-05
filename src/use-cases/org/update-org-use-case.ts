@@ -1,10 +1,10 @@
 import { OrgsRepository } from '@/repositories/orgs-repository'
 import { checkIfCepIsValid } from '@/utils/check-if-cep-is-valid'
 import { Org } from '@prisma/client'
-import { InvalidCepError } from './errors/invalid-data-errors/invalid-cep-error'
+import { InvalidCepError } from '../errors/invalid-data-errors/invalid-cep-error'
 import { checkIfPhoneIsValid } from '@/utils/check-if-phone-is-valid'
-import { InvalidPhoneError } from './errors/invalid-data-errors/invalid-phone-error'
-import { OrgNotFoundError } from './errors/resource-not-found-errors/org-not-found-error'
+import { InvalidPhoneError } from '../errors/invalid-data-errors/invalid-phone-error'
+import { OrgNotFoundError } from '../errors/resource-not-found-errors/org-not-found-error'
 
 interface UpdateOrgUseCaseRequest {
   id: string

@@ -2,9 +2,9 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { UpdateOrgUseCase } from './update-org-use-case'
 import { randomUUID } from 'crypto'
-import { InvalidPhoneError } from './errors/invalid-data-errors/invalid-phone-error'
-import { InvalidCepError } from './errors/invalid-data-errors/invalid-cep-error'
-import { OrgNotFoundError } from './errors/resource-not-found-errors/org-not-found-error'
+import { InvalidPhoneError } from '../errors/invalid-data-errors/invalid-phone-error'
+import { InvalidCepError } from '../errors/invalid-data-errors/invalid-cep-error'
+import { OrgNotFoundError } from '../errors/resource-not-found-errors/org-not-found-error'
 
 let orgsRepository: InMemoryOrgsRepository
 let updateOrgUseCase: UpdateOrgUseCase

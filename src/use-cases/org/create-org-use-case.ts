@@ -2,12 +2,12 @@ import { OrgsRepository } from '@/repositories/orgs-repository'
 import { Org } from '@prisma/client'
 import { hash } from 'bcrypt'
 import { checkIfCepIsValid } from '@/utils/check-if-cep-is-valid'
-import { DuplicatedEmailError } from './errors/duplicated-email-error'
+import { DuplicatedEmailError } from '../errors/duplicated-email-error'
 import { checkIfPhoneIsValid } from '@/utils/check-if-phone-is-valid'
 import { checkIfEmailIsValid } from '@/utils/check-if-email-is-valid'
-import { InvalidCepError } from './errors/invalid-data-errors/invalid-cep-error'
-import { InvalidPhoneError } from './errors/invalid-data-errors/invalid-phone-error'
-import { InvalidEmailError } from './errors/invalid-data-errors/invalid-email-error'
+import { InvalidCepError } from '../errors/invalid-data-errors/invalid-cep-error'
+import { InvalidPhoneError } from '../errors/invalid-data-errors/invalid-phone-error'
+import { InvalidEmailError } from '../errors/invalid-data-errors/invalid-email-error'
 
 interface CreateOrgUseCaseRequest {
   representant_name: string

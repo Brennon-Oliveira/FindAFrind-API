@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { hash } from 'bcrypt'
 import { GetOrgByIdUseCase } from './get-org-by-id-use-case'
 import { randomUUID } from 'crypto'
-import { OrgNotFoundError } from './errors/resource-not-found-errors/org-not-found-error'
+import { OrgNotFoundError } from '../errors/resource-not-found-errors/org-not-found-error'
 
 let orgsRepository: InMemoryOrgsRepository
 let sut: GetOrgByIdUseCase

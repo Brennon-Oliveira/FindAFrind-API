@@ -2,10 +2,10 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { CreateOrgUseCase } from './create-org-use-case'
 import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 import { compare } from 'bcrypt'
-import { DuplicatedEmailError } from './errors/duplicated-email-error'
-import { InvalidCepError } from './errors/invalid-data-errors/invalid-cep-error'
-import { InvalidPhoneError } from './errors/invalid-data-errors/invalid-phone-error'
-import { InvalidEmailError } from './errors/invalid-data-errors/invalid-email-error'
+import { DuplicatedEmailError } from '../errors/duplicated-email-error'
+import { InvalidCepError } from '../errors/invalid-data-errors/invalid-cep-error'
+import { InvalidPhoneError } from '../errors/invalid-data-errors/invalid-phone-error'
+import { InvalidEmailError } from '../errors/invalid-data-errors/invalid-email-error'
 
 let orgsRepository: InMemoryOrgsRepository
 let createOrgUseCase: CreateOrgUseCase

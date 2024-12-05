@@ -2,7 +2,7 @@ import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-
 import { beforeEach, describe, expect, it } from 'vitest'
 import { AuthenticateOnOrgUseCase } from './authenticate-on-org-use-case'
 import { hash } from 'bcrypt'
-import { InvalidCredentialsError } from './errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 
 let orgsRepository: InMemoryOrgsRepository
 let sut: AuthenticateOnOrgUseCase

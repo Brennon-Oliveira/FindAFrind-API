@@ -1,14 +1,14 @@
 # RF (Requisitos Funcionais)
 * [ ] Deve ser possível cadastrar um pet
 * [ ] Deve ser possível atualizar um pet
-* [ ] Deve ser possível atualizar os dados da ORG
+* [x] Deve ser possível atualizar os dados da ORG
 * [ ] Deve ser possível marcar um pet como adotado
 * [ ] Deve ser possível listar todos os pets disponíveis para adoção de um cidade
 * [ ] Deve ser possível filtrar pets por suas características
 * [ ] Deve ser possível visualizar detalhes de um pet para adoção
 * [x] Deve ser possível se cadastrar como uma ORG
 * [x] Deve ser possível realizar login como uma ORG
-* [ ] Deve ser possível buscar os dados da sua logada ORG
+* [x] Deve ser possível buscar os dados da sua logada ORG
 * [ ] Deve ser possível buscar pet por nome
 * [ ] Deve ser possível ver todas as cidades pelo estado
 * [ ] Deve ser possível ver a quantidade de pets na cidade selecionada
@@ -37,12 +37,12 @@
 * [x] O email deve ser único por organização
 * [x] O CEP deve um número com 8 dígitos
 * [x] O whatsapp deve ser um número com 13 digitos
-* [ ] Os dados possíveis de atualizar de uma ORG são:
+* [x] Os dados possíveis de atualizar de uma ORG são:
   - Nome do responsável
   - CEP
   - Endereco
   - Whatsapp
-* [ ] Para logar como uma organização, precisa do email e senha
+* [x] Para logar como uma organização, precisa do email e senha
 * [ ] Um pet deve estar ligado a uma org
 * [ ] O usuário que quer adotar entrará em contato com a ORG via WhatsApp
 * [ ] Todos os filtros, além de cidade, são opcionais

@@ -13,37 +13,24 @@ describe('Authenticate Org', () => {
   })
 
   it('should be able to authenticate with an org email and password', async () => {
-    const { token } = await createAnOrgAndAuthenticate(app)
-
-    const representant_name = 'New name'
-    const address = 'Floor Street, 15'
-    const cep = '11111111'
-    const phone = '5542111111111'
+    const { token, representant_name, address, cep, phone, email } =
+      await createAnOrgAndAuthenticate(app)
 
     const response = await request(app.server)
-      .put('/orgs')
-      .set('Authorization', `Bearer ${token}`)
-      .send({
-        representant_name,
-        address,
-        cep,
-        phone,
-      })
-
-    expect(response.statusCode).toEqual(204)
-
-    const newOrgResponse = await request(app.server)
       .get('/orgs')
       .set('Authorization', `Bearer ${token}`)
       .send()
 
-    expect(newOrgResponse.body).toEqual(
+    expect(response.statusCode).toEqual(200)
+    expect(response.body).toEqual(
       expect.objectContaining({
         representant_name,
         address,
         cep,
         phone,
+        email,
       }),
     )
+    expect(response.body.password_hash).toEqual(undefined)
   })
 })
