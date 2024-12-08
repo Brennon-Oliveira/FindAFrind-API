@@ -27,12 +27,12 @@ model Org {
 
 model Pet {
   id                 String             @id @default(uuid())
+  name               String
   about              String
   age                Int
   size               PetSize
   energy_level       Int
   environment        PetEnvironment
-  photos             String[]
   pet_photo          PetPhoto[]
   adopt_requeriments AdoptRequeriment[]
 

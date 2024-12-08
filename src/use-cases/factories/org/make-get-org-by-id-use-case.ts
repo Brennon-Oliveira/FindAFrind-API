@@ -1,5 +1,5 @@
 import { PrismaOrgsRepository } from '@/repositories/prisma/prisma-orgs-repository'
-import { GetOrgByIdUseCase } from '../org/get-org-by-id-use-case'
+import { GetOrgByIdUseCase } from '../../org/get-org-by-id-use-case'
 
 export const makeGetOrgByIdUseCase = (): GetOrgByIdUseCase => {
   const orgsRepository = new PrismaOrgsRepository()
