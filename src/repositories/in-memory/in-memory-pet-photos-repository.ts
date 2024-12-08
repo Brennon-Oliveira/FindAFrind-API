@@ -6,7 +6,7 @@ export class InMemoryPetPhotosRepository implements PetPhotosRepository {
   items: PetPhoto[] = []
   async createMany(
     data: Prisma.PetPhotoUncheckedCreateInput[],
-  ): Promise<PetPhoto[]> {
+  ): Promise<number> {
     const items: PetPhoto[] = data.map((item) => ({
       id: randomUUID(),
       pet_id: item.pet_id,
@@ -15,7 +15,7 @@ export class InMemoryPetPhotosRepository implements PetPhotosRepository {
 
     this.items = this.items.concat(items)
 
-    return items
+    return items.length
   }
 
   async getManyByPetId(petId: string): Promise<PetPhoto[]> {

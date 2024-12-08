@@ -1,14 +1,7 @@
 import { AdoptRequerimentsRepository } from '@/repositories/adopt-requeriments-repository'
 import { PetPhotosRepository } from '@/repositories/pet-photos-repository'
 import { PetsRepository } from '@/repositories/pets-repository'
-import {
-  AdoptRequeriment,
-  Pet,
-  PetEnvironment,
-  PetPhoto,
-  PetSize,
-  Prisma,
-} from '@prisma/client'
+import { Pet, PetEnvironment, PetSize, Prisma } from '@prisma/client'
 import { PetNotFoundError } from '../errors/resource-not-found-errors/pet-not-found-error'
 import { AdoptRequerimentNotFoundError } from '../errors/resource-not-found-errors/adopt-requeriment-not-found-error'
 import { PetPhotoNotFoundError } from '../errors/resource-not-found-errors/pet-photo-not-found-error'
@@ -37,8 +30,6 @@ interface UpdatePetUseCaseRequest {
 
 interface UpdatePetUseCaseResponse {
   pet: Pet
-  adoptRequeriments: AdoptRequeriment[]
-  petPhotos: PetPhoto[]
 }
 
 export class UpdatePetUseCase {
@@ -102,20 +93,20 @@ export class UpdatePetUseCase {
     )
     await this.petPhotosRepository.deleteMany(petPhotosFromParams.delete)
 
-    const adoptRequeriments = await this.adoptRequerimentsRepository.createMany(
+    await this.adoptRequerimentsRepository.createMany(
       adoptRequerimentsFromParams.create.map((adoptRequeriment) => ({
         ...adoptRequeriment,
         pet_id: pet.id,
       })),
     )
 
-    const petPhotos = await this.petPhotosRepository.createMany(
+    await this.petPhotosRepository.createMany(
       petPhotosFromParams.create.map((petPhoto) => ({
         ...petPhoto,
         pet_id: pet.id,
       })),
     )
 
-    return { pet, adoptRequeriments, petPhotos }
+    return { pet }
   }
 }

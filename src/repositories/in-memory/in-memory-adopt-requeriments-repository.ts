@@ -8,7 +8,7 @@ export class InMemoryAdoptRequerimentsRepository
   items: AdoptRequeriment[] = []
   async createMany(
     data: Prisma.AdoptRequerimentUncheckedCreateInput[],
-  ): Promise<AdoptRequeriment[]> {
+  ): Promise<number> {
     const items: AdoptRequeriment[] = data.map((item) => ({
       id: randomUUID(),
       pet_id: item.pet_id,
@@ -17,7 +17,7 @@ export class InMemoryAdoptRequerimentsRepository
 
     this.items = this.items.concat(items)
 
-    return items
+    return items.length
   }
 
   async getManyByPetId(petId: string): Promise<AdoptRequeriment[]> {

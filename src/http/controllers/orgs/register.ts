@@ -1,7 +1,7 @@
 import { InvalidCepError } from '@/use-cases/errors/invalid-data-errors/invalid-cep-error'
 import { InvalidEmailError } from '@/use-cases/errors/invalid-data-errors/invalid-email-error'
 import { InvalidPhoneError } from '@/use-cases/errors/invalid-data-errors/invalid-phone-error'
-import { makeCreateOrgUseCase } from '@/use-cases/factories/make-create-org-use-case'
+import { makeCreateOrgUseCase } from '@/use-cases/factories/org/make-create-org-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 

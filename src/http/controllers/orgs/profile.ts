@@ -1,5 +1,5 @@
 import { OrgNotFoundError } from '@/use-cases/errors/resource-not-found-errors/org-not-found-error'
-import { makeGetOrgByIdUseCase } from '@/use-cases/factories/make-get-org-by-id-use-case'
+import { makeGetOrgByIdUseCase } from '@/use-cases/factories/org/make-get-org-by-id-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 
 export const profile = async (request: FastifyRequest, reply: FastifyReply) => {

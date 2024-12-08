@@ -94,19 +94,21 @@ describe('Create Pet Use Case', () => {
       size: PetSize.MEDIUM,
     })
 
-    const [requeriment1, requeriment2] =
-      await adoptRequerimentsRepository.createMany([
-        {
-          pet_id: createdId,
-          requeriment: 'My first requeriment to delete',
-        },
-        {
-          pet_id: createdId,
-          requeriment: 'My second requeriment to delete',
-        },
-      ])
+    await adoptRequerimentsRepository.createMany([
+      {
+        pet_id: createdId,
+        requeriment: 'My first requeriment to delete',
+      },
+      {
+        pet_id: createdId,
+        requeriment: 'My second requeriment to delete',
+      },
+    ])
 
-    const [photo1, photo2] = await petPhotosRepository.createMany([
+    const [requeriment1, requeriment2] =
+      await adoptRequerimentsRepository.getManyByPetId(createdId)
+
+    await petPhotosRepository.createMany([
       {
         pet_id: createdId,
         url: 'My first photo to delete',
@@ -116,6 +118,8 @@ describe('Create Pet Use Case', () => {
         url: 'My second photo to delete',
       },
     ])
+
+    const [photo1, photo2] = await petPhotosRepository.getManyByPetId(createdId)
 
     const name = 'New Bob'
     const about = 'My new about'

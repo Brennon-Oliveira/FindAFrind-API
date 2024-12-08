@@ -1,6 +1,6 @@
 import { InvalidCepError } from '@/use-cases/errors/invalid-data-errors/invalid-cep-error'
 import { InvalidPhoneError } from '@/use-cases/errors/invalid-data-errors/invalid-phone-error'
-import { makeUpdateOrgUseCase } from '@/use-cases/factories/make-update-org-use-case'
+import { makeUpdateOrgUseCase } from '@/use-cases/factories/org/make-update-org-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
