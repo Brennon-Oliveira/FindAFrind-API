@@ -13,6 +13,7 @@
     "test:e2e:watch": "vitest --dir src/http/",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
+    "test:all": "vitest run",
     "prisma": "prisma",
     "prisma:migrate": "prisma migrate",
     "prisma:dev": "prisma migrate dev",

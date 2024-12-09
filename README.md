@@ -1,6 +1,6 @@
 # RF (Requisitos Funcionais)
-* [ ] Deve ser possível cadastrar um pet
-* [ ] Deve ser possível atualizar um pet
+* [*] Deve ser possível cadastrar um pet
+* [*] Deve ser possível atualizar um pet
 * [x] Deve ser possível atualizar os dados da ORG
 * [ ] Deve ser possível marcar um pet como adotado
 * [ ] Deve ser possível listar todos os pets disponíveis para adoção de um cidade

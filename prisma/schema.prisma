@@ -38,6 +38,7 @@ model Pet {
   adopt_requeriments AdoptRequeriment[]
   org                Org                @relation(fields: [org_id], references: [id])
   org_id             String
+  adopted_at         DateTime?
 
   @@map("pets")
 }
