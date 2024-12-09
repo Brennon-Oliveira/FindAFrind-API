@@ -21,6 +21,7 @@ model Org {
   address           String
   phone             String
   password_hash     String
+  pets              Pet[]
 
   @@map("orgs")
 }
@@ -35,6 +36,8 @@ model Pet {
   environment        PetEnvironment
   pet_photo          PetPhoto[]
   adopt_requeriments AdoptRequeriment[]
+  org                Org                @relation(fields: [org_id], references: [id])
+  org_id             String
 
   @@map("pets")
 }

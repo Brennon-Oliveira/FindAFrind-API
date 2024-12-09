@@ -41,4 +41,14 @@ export class PrismaOrgsRepository implements OrgsRepository {
 
     return org
   }
+
+  async existsById(id: string): Promise<boolean> {
+    const count = await prisma.org.count({
+      where: {
+        id,
+      },
+    })
+
+    return count > 0
+  }
 }

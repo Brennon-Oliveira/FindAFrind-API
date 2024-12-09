@@ -9,21 +9,23 @@ import { isValidPetAge } from '../business-rules/pet/is-valid-pet-age'
 import { InvalidPetAgeError } from '../errors/pet-errors/invalid-pet-age-error'
 import { isValidPetEnergyLevel } from '../business-rules/pet/is-valid-pet-energy-level'
 import { InvalidPetEnergyLevelError } from '../errors/pet-errors/invalid-pet-energy-level-error'
+import { PetIsNotFromOrgIdError } from '../errors/pet-errors/pet-is-not-from-org-error'
 
 interface UpdatePetUseCaseRequest {
   id: string
   name: string
   about: string
   age: number
+  orgId: string
   energyLevel: number
   environment: PetEnvironment
   size: PetSize
   adoptRequeriments: {
-    create: Prisma.AdoptRequerimentUncheckedCreateInput[]
+    create: Prisma.AdoptRequerimentCreateWithoutPetInput[]
     delete: string[]
   }
   petPhotos: {
-    create: Prisma.PetPhotoUncheckedCreateInput[]
+    create: Prisma.PetPhotoCreateWithoutPetInput[]
     delete: string[]
   }
 }
@@ -44,18 +46,13 @@ export class UpdatePetUseCase {
     name,
     about,
     age,
+    orgId,
     energyLevel,
     environment,
     size,
     adoptRequeriments: adoptRequerimentsFromParams,
     petPhotos: petPhotosFromParams,
   }: UpdatePetUseCaseRequest): Promise<UpdatePetUseCaseResponse> {
-    const petToUpdate = await this.petsRepository.findById(id)
-
-    if (!petToUpdate) {
-      throw new PetNotFoundError()
-    }
-
     if (
       !(await this.adoptRequerimentsRepository.allExists(
         adoptRequerimentsFromParams.delete,
@@ -76,6 +73,16 @@ export class UpdatePetUseCase {
 
     if (!isValidPetEnergyLevel(energyLevel)) {
       throw new InvalidPetEnergyLevelError(energyLevel)
+    }
+
+    const petToUpdate = await this.petsRepository.findById(id)
+
+    if (!petToUpdate) {
+      throw new PetNotFoundError()
+    }
+
+    if (petToUpdate.org_id !== orgId) {
+      throw new PetIsNotFromOrgIdError()
     }
 
     const pet = await this.petsRepository.save({

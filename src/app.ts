@@ -3,6 +3,7 @@ import fastify from 'fastify'
 import { env } from './env'
 import { orgRoutes } from './http/controllers/orgs/routes'
 import { ZodError } from 'zod'
+import { petRoutes } from './http/controllers/pets/routes'
 
 export const app = fastify()
 
@@ -12,6 +13,10 @@ app.register(fastifyJwt, {
 
 app.register(orgRoutes, {
   prefix: '/orgs',
+})
+
+app.register(petRoutes, {
+  prefix: '/pets',
 })
 
 app.setErrorHandler((error, _, reply) => {

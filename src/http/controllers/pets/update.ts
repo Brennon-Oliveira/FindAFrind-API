@@ -1,10 +1,12 @@
 import { OrgNotFoundError } from '@/use-cases/errors/resource-not-found-errors/org-not-found-error'
-import { makeCreatePetUseCase } from '@/use-cases/factories/pet/make-create-pet-use-case'
+import { makeUpdatePetUseCase } from '@/use-cases/factories/pet/make-update-pet-use-case'
 import { PetEnvironment, PetSize } from '@prisma/client'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-export const create = async (request: FastifyRequest, reply: FastifyReply) => {
-  const createPetBodySchema = z.object({
+
+export const update = async (request: FastifyRequest, reply: FastifyReply) => {
+  const updatePetBodySchema = z.object({
+    id: z.string(),
     name: z.string(),
     about: z.string(),
     age: z.coerce.number(),
@@ -17,6 +19,7 @@ export const create = async (request: FastifyRequest, reply: FastifyReply) => {
           requeriment: z.string(),
         })
         .array(),
+      delete: z.string().array(),
     }),
     petPhotos: z.object({
       create: z
@@ -24,10 +27,12 @@ export const create = async (request: FastifyRequest, reply: FastifyReply) => {
           url: z.string(),
         })
         .array(),
+      delete: z.string().array(),
     }),
   })
 
   const {
+    id,
     name,
     about,
     age,
@@ -36,28 +41,27 @@ export const create = async (request: FastifyRequest, reply: FastifyReply) => {
     size,
     adoptRequeriments,
     petPhotos,
-  } = createPetBodySchema.parse(request.body)
+  } = updatePetBodySchema.parse(request.body)
 
   try {
-    const createPetUseCase = makeCreatePetUseCase()
+    const updatePetUseCase = makeUpdatePetUseCase()
 
     const orgId = request.user.sub
 
-    const { pet } = await createPetUseCase.execute({
+    await updatePetUseCase.execute({
+      id,
       name,
       about,
       age,
+      orgId,
       energyLevel,
       environment,
-      orgId,
       size,
       adoptRequeriments,
       petPhotos,
     })
 
-    return reply.status(201).send({
-      petId: pet.id,
-    })
+    return reply.status(204).send()
   } catch (err) {
     if (err instanceof OrgNotFoundError) {
       return reply.status(403).send({ message: err.message })

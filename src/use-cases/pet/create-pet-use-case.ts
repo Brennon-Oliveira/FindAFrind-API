@@ -6,11 +6,14 @@ import { isValidPetAge } from '../business-rules/pet/is-valid-pet-age'
 import { InvalidPetAgeError } from '../errors/pet-errors/invalid-pet-age-error'
 import { isValidPetEnergyLevel } from '../business-rules/pet/is-valid-pet-energy-level'
 import { InvalidPetEnergyLevelError } from '../errors/pet-errors/invalid-pet-energy-level-error'
+import { OrgsRepository } from '@/repositories/orgs-repository'
+import { OrgNotFoundError } from '../errors/resource-not-found-errors/org-not-found-error'
 
 interface CreatePetUseCaseRequest {
   name: string
   about: string
   age: number
+  orgId: string
   energyLevel: number
   environment: PetEnvironment
   size: PetSize
@@ -31,6 +34,7 @@ export class CreatePetUseCase {
     private petsRepository: PetsRepository,
     private petPhotosRepository: PetPhotosRepository,
     private adoptRequerimentsRepository: AdoptRequerimentsRepository,
+    private orgsRepository: OrgsRepository,
   ) {}
 
   async execute({
@@ -40,6 +44,7 @@ export class CreatePetUseCase {
     energyLevel,
     environment,
     size,
+    orgId,
     adoptRequeriments: adoptRequerimentsFromParams,
     petPhotos: petPhotosFromParams,
   }: CreatePetUseCaseRequest): Promise<CreatePetUseCaseResponse> {
@@ -51,6 +56,10 @@ export class CreatePetUseCase {
       throw new InvalidPetEnergyLevelError(energyLevel)
     }
 
+    if (!(await this.orgsRepository.existsById(orgId))) {
+      throw new OrgNotFoundError()
+    }
+
     const pet = await this.petsRepository.create({
       name,
       about,
@@ -58,6 +67,7 @@ export class CreatePetUseCase {
       energy_level: energyLevel,
       environment,
       size,
+      org_id: orgId,
     })
 
     await this.petPhotosRepository.createMany(

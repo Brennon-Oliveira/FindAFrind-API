@@ -14,6 +14,7 @@ import {
   MIN_PET_ENERGY_LEVEL,
 } from '../business-rules/pet/is-valid-pet-energy-level'
 import { InvalidPetEnergyLevelError } from '../errors/pet-errors/invalid-pet-energy-level-error'
+import { PetIsNotFromOrgIdError } from '../errors/pet-errors/pet-is-not-from-org-error'
 
 let petsRepository: InMemoryPetsRepository
 let petPhotosRepository: InMemoryPetPhotosRepository
@@ -33,10 +34,11 @@ describe('Create Pet Use Case', () => {
   })
 
   it('should be able to update a simple pet (whitout nested itens)', async () => {
-    const { id: createdId } = await petsRepository.create({
+    const { id: createdId, org_id } = await petsRepository.create({
       name: 'Bob',
       about: 'Bob is a lovely pet',
       age: 3,
+      org_id: 'my-org-id',
       energy_level: 2,
       environment: PetEnvironment.BOTH,
       size: PetSize.MEDIUM,
@@ -56,6 +58,7 @@ describe('Create Pet Use Case', () => {
       name,
       about,
       age,
+      orgId: org_id,
       energyLevel,
       environment,
       size,
@@ -85,10 +88,11 @@ describe('Create Pet Use Case', () => {
   })
 
   it('should be able to update a complex pet (with nested itens)', async () => {
-    const { id: createdId } = await petsRepository.create({
+    const { id: createdId, org_id } = await petsRepository.create({
       name: 'Bob',
       about: 'Bob is a lovely pet',
       age: 3,
+      org_id: 'my-org-id',
       energy_level: 2,
       environment: PetEnvironment.BOTH,
       size: PetSize.MEDIUM,
@@ -161,6 +165,7 @@ describe('Create Pet Use Case', () => {
       name,
       about,
       age,
+      orgId: org_id,
       energyLevel,
       environment,
       size,
@@ -208,10 +213,11 @@ describe('Create Pet Use Case', () => {
   })
 
   it('should not be able to delete an inexistent petPhoto', async () => {
-    const { id: createdId } = await petsRepository.create({
+    const { id: createdId, org_id } = await petsRepository.create({
       name: 'Bob',
       about: 'Bob is a lovely pet',
       age: 3,
+      org_id: 'my-org-id',
       energy_level: 2,
       environment: PetEnvironment.BOTH,
       size: PetSize.MEDIUM,
@@ -225,6 +231,7 @@ describe('Create Pet Use Case', () => {
         name: 'Bob',
         about: "'Bob is a lovely pet'",
         age: 5,
+        orgId: org_id,
         energyLevel: 3,
         environment: PetEnvironment.BOTH,
         size: PetSize.SMALL,
@@ -241,10 +248,11 @@ describe('Create Pet Use Case', () => {
   })
 
   it('should not be able to delete an inexistent adoptRequeriment', async () => {
-    const { id: createdId } = await petsRepository.create({
+    const { id: createdId, org_id } = await petsRepository.create({
       name: 'Bob',
       about: 'Bob is a lovely pet',
       age: 3,
+      org_id: 'my-org-id',
       energy_level: 2,
       environment: PetEnvironment.BOTH,
       size: PetSize.MEDIUM,
@@ -258,6 +266,7 @@ describe('Create Pet Use Case', () => {
         name: 'Bob',
         about: "'Bob is a lovely pet'",
         age: 5,
+        orgId: org_id,
         energyLevel: 3,
         environment: PetEnvironment.BOTH,
         size: PetSize.SMALL,
@@ -282,6 +291,7 @@ describe('Create Pet Use Case', () => {
         name: 'New Bob',
         about: 'My new about',
         age: 5,
+        orgId: 'my-org-id',
         energyLevel: 4,
         environment: PetEnvironment.CLOSE,
         size: PetSize.SMALL,
@@ -298,10 +308,11 @@ describe('Create Pet Use Case', () => {
   })
 
   it('should not be able to update with an invalid age', async () => {
-    const { id: createdId } = await petsRepository.create({
+    const { id: createdId, org_id } = await petsRepository.create({
       name: 'Bob',
       about: 'Bob is a lovely pet',
       age: 3,
+      org_id: 'my-org-id',
       energy_level: 2,
       environment: PetEnvironment.BOTH,
       size: PetSize.MEDIUM,
@@ -315,6 +326,7 @@ describe('Create Pet Use Case', () => {
         name: 'Bob',
         about: "'Bob is a lovely pet'",
         age: invalidAge,
+        orgId: org_id,
         energyLevel: 3,
         environment: PetEnvironment.BOTH,
         size: PetSize.SMALL,
@@ -331,10 +343,11 @@ describe('Create Pet Use Case', () => {
   })
 
   it('should not be able to create with an invalid energy level (lower)', async () => {
-    const { id: createdId } = await petsRepository.create({
+    const { id: createdId, org_id } = await petsRepository.create({
       name: 'Bob',
       about: 'Bob is a lovely pet',
       age: 3,
+      org_id: 'my-org-id',
       energy_level: 2,
       environment: PetEnvironment.BOTH,
       size: PetSize.MEDIUM,
@@ -348,6 +361,7 @@ describe('Create Pet Use Case', () => {
         name: 'Bob',
         about: "'Bob is a lovely pet'",
         age: 5,
+        orgId: org_id,
         energyLevel: invalidEnergyLevel,
         environment: PetEnvironment.BOTH,
         size: PetSize.SMALL,
@@ -364,10 +378,11 @@ describe('Create Pet Use Case', () => {
   })
 
   it('should not be able to create with an invalid energy level (higher)', async () => {
-    const { id: createdId } = await petsRepository.create({
+    const { id: createdId, org_id } = await petsRepository.create({
       name: 'Bob',
       about: 'Bob is a lovely pet',
       age: 3,
+      org_id: 'my-org-id',
       energy_level: 2,
       environment: PetEnvironment.BOTH,
       size: PetSize.MEDIUM,
@@ -381,6 +396,7 @@ describe('Create Pet Use Case', () => {
         name: 'Bob',
         about: "'Bob is a lovely pet'",
         age: 5,
+        orgId: org_id,
         energyLevel: invalidEnergyLevel,
         environment: PetEnvironment.BOTH,
         size: PetSize.SMALL,
@@ -394,5 +410,40 @@ describe('Create Pet Use Case', () => {
         },
       }),
     ).rejects.toBeInstanceOf(InvalidPetEnergyLevelError)
+  })
+
+  it('should not be able to create with an invalid org id (different from the pet)', async () => {
+    const { id: createdId } = await petsRepository.create({
+      name: 'Bob',
+      about: 'Bob is a lovely pet',
+      age: 3,
+      org_id: 'my-org-id',
+      energy_level: 2,
+      environment: PetEnvironment.BOTH,
+      size: PetSize.MEDIUM,
+    })
+
+    const invalidOrgId = 'my-invalid-org-id'
+
+    await expect(() =>
+      sut.execute({
+        id: createdId,
+        name: 'Bob',
+        about: "'Bob is a lovely pet'",
+        age: 5,
+        orgId: invalidOrgId,
+        energyLevel: 2,
+        environment: PetEnvironment.BOTH,
+        size: PetSize.SMALL,
+        adoptRequeriments: {
+          create: [],
+          delete: [],
+        },
+        petPhotos: {
+          create: [],
+          delete: [],
+        },
+      }),
+    ).rejects.toBeInstanceOf(PetIsNotFromOrgIdError)
   })
 })
