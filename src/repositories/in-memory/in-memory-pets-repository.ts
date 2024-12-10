@@ -1,9 +1,12 @@
 import { Prisma, Pet } from '@prisma/client'
 import { PetsRepository } from '../pets-repository'
 import { randomUUID } from 'crypto'
+import { InMemoryOrgsRepository } from './in-memory-orgs-repository'
 
 export class InMemoryPetsRepository implements PetsRepository {
   items: Pet[] = []
+
+  constructor(private orgsRepository: InMemoryOrgsRepository) {}
 
   async create(data: Prisma.PetUncheckedCreateInput): Promise<Pet> {
     const pet: Pet = {
@@ -11,6 +14,7 @@ export class InMemoryPetsRepository implements PetsRepository {
       name: data.name,
       about: data.about,
       age: data.age,
+      adopted_at: null,
       energy_level: data.energy_level,
       environment: data.environment,
       size: data.size,
@@ -40,5 +44,31 @@ export class InMemoryPetsRepository implements PetsRepository {
     }
 
     return data
+  }
+
+  async getManyByOrgId(orgId: string): Promise<Pet[]> {
+    const pets = this.items.filter((item) => item.org_id === orgId)
+
+    return pets
+  }
+
+  async getManyByCity(
+    city: string,
+    pagination: {
+      page: number
+      size: number
+    },
+  ): Promise<Pet[]> {
+    const orgsIds = this.orgsRepository.items
+      .filter((org) => org.city === city)
+      .map((org) => org.id)
+
+    const pets = this.items
+      .filter((pet) => orgsIds.includes(pet.org_id))
+      .splice((pagination.page - 1) * pagination.size, pagination.size)
+
+    console.log(pets)
+
+    return pets
   }
 }

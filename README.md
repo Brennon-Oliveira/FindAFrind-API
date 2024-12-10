@@ -2,8 +2,9 @@
 * [*] Deve ser possível cadastrar um pet
 * [*] Deve ser possível atualizar um pet
 * [x] Deve ser possível atualizar os dados da ORG
-* [ ] Deve ser possível marcar um pet como adotado
+* [x] Deve ser possível marcar um pet como adotado
 * [ ] Deve ser possível listar todos os pets disponíveis para adoção de um cidade
+* [ ] Deve ser possível listar todos os pets da sua organização
 * [ ] Deve ser possível filtrar pets por suas características
 * [ ] Deve ser possível visualizar detalhes de um pet para adoção
 * [x] Deve ser possível se cadastrar como uma ORG

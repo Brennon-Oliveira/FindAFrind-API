@@ -6,6 +6,7 @@ export const createAnOrgAndAuthenticate = async (app: FastifyInstance) => {
   const password = '123456'
   const representant_name = 'John Doe'
   const address = 'Wall Street, 51'
+  const city = 'New York'
   const cep = '99999999'
   const phone = '5542999999999'
 
@@ -13,6 +14,7 @@ export const createAnOrgAndAuthenticate = async (app: FastifyInstance) => {
     representant_name,
     address,
     cep,
+    city,
     phone,
     email,
     password,
@@ -25,5 +27,14 @@ export const createAnOrgAndAuthenticate = async (app: FastifyInstance) => {
 
   const token = response.body.token
 
-  return { token, representant_name, address, cep, phone, email, password }
+  return {
+    token,
+    representant_name,
+    address,
+    cep,
+    phone,
+    email,
+    password,
+    city,
+  }
 }

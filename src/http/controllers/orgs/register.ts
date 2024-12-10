@@ -13,12 +13,13 @@ export const register = async (
     representant_name: z.string(),
     cep: z.string().length(8),
     address: z.string(),
+    city: z.string(),
     email: z.string().email(),
     password: z.string(),
     phone: z.string().length(13),
   })
 
-  const { representant_name, address, cep, email, password, phone } =
+  const { representant_name, address, cep, email, password, phone, city } =
     registerBodySchema.parse(request.body)
 
   try {
@@ -28,6 +29,7 @@ export const register = async (
       representant_name,
       address,
       cep,
+      city,
       email,
       password,
       phone,

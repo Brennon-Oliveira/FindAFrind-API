@@ -15,6 +15,7 @@ import {
 } from '../business-rules/pet/is-valid-pet-energy-level'
 import { InvalidPetEnergyLevelError } from '../errors/pet-errors/invalid-pet-energy-level-error'
 import { PetIsNotFromOrgIdError } from '../errors/pet-errors/pet-is-not-from-org-error'
+import { InMemoryOrgsRepository } from '@/repositories/in-memory/in-memory-orgs-repository'
 
 let petsRepository: InMemoryPetsRepository
 let petPhotosRepository: InMemoryPetPhotosRepository
@@ -23,7 +24,7 @@ let sut: UpdatePetUseCase
 
 describe('Create Pet Use Case', () => {
   beforeEach(() => {
-    petsRepository = new InMemoryPetsRepository()
+    petsRepository = new InMemoryPetsRepository(new InMemoryOrgsRepository())
     petPhotosRepository = new InMemoryPetPhotosRepository()
     adoptRequerimentsRepository = new InMemoryAdoptRequerimentsRepository()
     sut = new UpdatePetUseCase(

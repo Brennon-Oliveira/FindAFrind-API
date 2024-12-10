@@ -15,15 +15,16 @@ let createdPet: Pet
 
 describe('Set pet as adopted Use Case', () => {
   beforeEach(async () => {
-    petsRepository = new InMemoryPetsRepository()
     orgsRepository = new InMemoryOrgsRepository()
-    sut = new SetPetAsAdoptedUseCase(petsRepository, orgsRepository)
+    petsRepository = new InMemoryPetsRepository(orgsRepository)
+    sut = new SetPetAsAdoptedUseCase(petsRepository)
 
     createdOrg = await orgsRepository.create({
       representant_name: 'John Doe',
       email: 'johndoe@example.com',
       address: 'Wall Street, 51',
       cep: '99999999',
+      city: 'New York',
       password_hash: 'my-passwword',
       phone: '5542999999999',
     })

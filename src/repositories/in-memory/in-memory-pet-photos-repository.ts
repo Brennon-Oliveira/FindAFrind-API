@@ -4,6 +4,7 @@ import { randomUUID } from 'crypto'
 
 export class InMemoryPetPhotosRepository implements PetPhotosRepository {
   items: PetPhoto[] = []
+
   async createMany(
     data: Prisma.PetPhotoUncheckedCreateInput[],
   ): Promise<number> {

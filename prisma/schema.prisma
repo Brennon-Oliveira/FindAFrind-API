@@ -19,6 +19,7 @@ model Org {
   email             String @unique
   cep               String
   address           String
+  city              String
   phone             String
   password_hash     String
   pets              Pet[]

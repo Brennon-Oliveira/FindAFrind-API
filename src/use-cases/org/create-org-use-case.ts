@@ -13,6 +13,7 @@ interface CreateOrgUseCaseRequest {
   representant_name: string
   cep: string
   address: string
+  city: string
   email: string
   password: string
   phone: string
@@ -29,6 +30,7 @@ export class CreateOrgUseCase {
     representant_name,
     cep,
     address,
+    city,
     email,
     password,
     phone,
@@ -63,6 +65,7 @@ export class CreateOrgUseCase {
       representant_name,
       address,
       cep,
+      city,
       email,
       phone,
       password_hash,

@@ -21,12 +21,14 @@ describe('Update ORG Use Case', () => {
     const cep = '99999991'
     const phone = '5542999999991'
     const id = randomUUID()
+    const city = 'New York'
 
     orgsRepository.create({
       id,
       representant_name: 'John Doe',
       address: 'Wall Street, 51',
       cep: '99999999',
+      city,
       phone: '5542999999999',
       email: 'org@example.com',
       password_hash: 'my-example-password-hash',
@@ -36,6 +38,7 @@ describe('Update ORG Use Case', () => {
       id,
       representant_name,
       address,
+      city,
       cep,
       phone,
     })
@@ -59,6 +62,7 @@ describe('Update ORG Use Case', () => {
         representant_name: 'John Doe',
         address: "'Wall Street, 51'",
         cep: '99999999',
+        city: 'New York',
         phone: '5542999999999',
       }),
     ).rejects.toBeInstanceOf(OrgNotFoundError)
@@ -70,6 +74,7 @@ describe('Update ORG Use Case', () => {
     const invalid_cep = '99999'
     const phone = '5542999999999'
     const id = randomUUID()
+    const city = 'New York'
 
     await orgsRepository.create({
       id,
@@ -77,6 +82,7 @@ describe('Update ORG Use Case', () => {
       address,
       cep: '99999999',
       email: 'johndue@example.com',
+      city,
       phone,
       password_hash: 'my-password-hash',
     })
@@ -86,6 +92,7 @@ describe('Update ORG Use Case', () => {
         id,
         representant_name,
         address,
+        city,
         cep: invalid_cep,
         phone,
       }),
@@ -98,12 +105,14 @@ describe('Update ORG Use Case', () => {
     const cep = '99999999'
     const invalid_phone = '55429999999aa'
     const id = randomUUID()
+    const city = 'New York'
 
     await orgsRepository.create({
       id,
       representant_name,
       address,
       cep,
+      city,
       email: 'johndue@example.com',
       phone: '5542999999999',
       password_hash: 'my-password-hash',
@@ -114,6 +123,7 @@ describe('Update ORG Use Case', () => {
         id,
         representant_name,
         address,
+        city,
         cep,
         phone: invalid_phone,
       }),

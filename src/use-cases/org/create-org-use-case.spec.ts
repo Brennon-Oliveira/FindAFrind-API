@@ -22,11 +22,13 @@ describe('Create ORG Use Case', () => {
     const cep = '99999999'
     const email = 'johndue@example.com'
     const phone = '5542999999999'
+    const city = 'New York'
 
     const { org } = await createOrgUseCase.execute({
       representant_name,
       address,
       cep,
+      city,
       email,
       phone,
       password: '123456',
@@ -50,6 +52,7 @@ describe('Create ORG Use Case', () => {
       representant_name: 'John Doe',
       address: 'Wall Street, 51',
       cep: '99999999',
+      city: 'New York',
       email: 'johndue@example.com',
       phone: '5542999999999',
       password,
@@ -64,11 +67,13 @@ describe('Create ORG Use Case', () => {
     const cep = '99999999'
     const email = 'johndue@example.com'
     const phone = '5542999999999'
+    const city = 'New York'
 
     await createOrgUseCase.execute({
       representant_name,
       address,
       cep,
+      city,
       email,
       phone,
       password: '123456',
@@ -79,6 +84,7 @@ describe('Create ORG Use Case', () => {
         representant_name,
         address,
         cep,
+        city,
         email,
         phone,
         password: '123456',
@@ -92,6 +98,7 @@ describe('Create ORG Use Case', () => {
     const invalid_cep = '99999'
     const email = 'johndue@example.com'
     const phone = '5542999999999'
+    const city = 'New York'
 
     await expect(() =>
       createOrgUseCase.execute({
@@ -99,6 +106,7 @@ describe('Create ORG Use Case', () => {
         address,
         cep: invalid_cep,
         email,
+        city,
         phone,
         password: '123456',
       }),
@@ -111,12 +119,14 @@ describe('Create ORG Use Case', () => {
     const cep = '99999999'
     const email = 'johndue@example.com'
     const invalid_phone = '55429999999'
+    const city = 'New York'
 
     await expect(() =>
       createOrgUseCase.execute({
         representant_name,
         address,
         cep,
+        city,
         email,
         phone: invalid_phone,
         password: '123456',
@@ -130,12 +140,14 @@ describe('Create ORG Use Case', () => {
     const cep = '99999999'
     const invalid_email = 'johndueexample.com'
     const phone = '5542999999999'
+    const city = 'New York'
 
     await expect(() =>
       createOrgUseCase.execute({
         representant_name,
         address,
         cep,
+        city,
         phone,
         email: invalid_email,
         password: '123456',

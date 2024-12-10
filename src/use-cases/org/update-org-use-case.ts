@@ -10,6 +10,7 @@ interface UpdateOrgUseCaseRequest {
   id: string
   representant_name: string
   cep: string
+  city: string
   address: string
   phone: string
 }
@@ -26,6 +27,7 @@ export class UpdateOrgUseCase {
     representant_name,
     cep,
     address,
+    city,
     phone,
   }: UpdateOrgUseCaseRequest): Promise<UpdateOrgUseCaseResponse> {
     const isCepValid = checkIfCepIsValid(cep)
@@ -50,6 +52,7 @@ export class UpdateOrgUseCase {
       ...oldOrg,
       representant_name,
       address,
+      city,
       cep,
       phone,
     }

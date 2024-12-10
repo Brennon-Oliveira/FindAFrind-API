@@ -1,4 +1,3 @@
-import { OrgsRepository } from '@/repositories/orgs-repository'
 import { PetsRepository } from '@/repositories/pets-repository'
 import { Pet } from '@prisma/client'
 import { PetNotFoundError } from '../errors/resource-not-found-errors/pet-not-found-error'
@@ -14,10 +13,7 @@ interface SetPetAsAdoptedUseCaseResponse {
 }
 
 export class SetPetAsAdoptedUseCase {
-  constructor(
-    private petsRepository: PetsRepository,
-    private orgsRepository: OrgsRepository,
-  ) {}
+  constructor(private petsRepository: PetsRepository) {}
 
   async execute({
     petId,

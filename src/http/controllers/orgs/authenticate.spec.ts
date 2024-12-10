@@ -19,6 +19,7 @@ describe('Authenticate Org', () => {
       representant_name: 'John Doe',
       address: 'Wall Street, 51',
       cep: '99999999',
+      city: 'New York',
       phone: '5542999999999',
       email,
       password,
