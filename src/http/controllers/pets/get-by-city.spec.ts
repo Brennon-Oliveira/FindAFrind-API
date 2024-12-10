@@ -76,6 +76,18 @@ describe('Create Pet', () => {
       },
     })
 
+    await prisma.pet.create({
+      data: {
+        name: 'Junior',
+        about: 'Junior is one more lovely pet',
+        age: 7,
+        energy_level: 4,
+        environment: PetEnvironment.OPEN,
+        org_id: anotherOrg.id,
+        size: PetSize.SMALL,
+      },
+    })
+
     const response = await request(app.server)
       .get(`/pets`)
       .query({
@@ -85,7 +97,7 @@ describe('Create Pet', () => {
       .send()
 
     expect(response.status).toEqual(200)
-    expect(response.body.pets).toHaveLength(3)
+    expect(response.body.pets).toHaveLength(4)
 
     const paginatedResponse = await request(app.server)
       .get(`/pets`)
