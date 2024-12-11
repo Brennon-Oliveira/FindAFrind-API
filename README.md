@@ -6,13 +6,13 @@
 * [x] Deve ser possível listar todos os pets disponíveis para adoção de um cidade
 * [x] Deve ser possível listar todos os pets da sua organização
 * [ ] Deve ser possível filtrar pets por suas características
-* [ ] Deve ser possível visualizar detalhes de um pet para adoção
+* [x] Deve ser possível visualizar detalhes de um pet para adoção
 * [x] Deve ser possível se cadastrar como uma ORG
 * [x] Deve ser possível realizar login como uma ORG
 * [x] Deve ser possível buscar os dados da sua logada ORG
 * [ ] Deve ser possível buscar pet por nome
 * [ ] Deve ser possível ver todas as cidades pelo estado
-* [ ] Deve ser possível ver a quantidade de pets na cidade selecionada
+* [x] Deve ser possível ver a quantidade de pets na cidade selecionada
 # RG (Regras de Negócio)
 * [x] Um pet deve ter as informações:
   - Nome

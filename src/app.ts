@@ -4,6 +4,7 @@ import { env } from './env'
 import { orgRoutes } from './http/controllers/orgs/routes'
 import { ZodError } from 'zod'
 import { petRoutes } from './http/controllers/pets/routes'
+import { petUnsafeRoutes } from './http/controllers/pets/unsafeRoutes'
 
 export const app = fastify()
 
@@ -16,6 +17,10 @@ app.register(orgRoutes, {
 })
 
 app.register(petRoutes, {
+  prefix: '/pets',
+})
+
+app.register(petUnsafeRoutes, {
   prefix: '/pets',
 })
 

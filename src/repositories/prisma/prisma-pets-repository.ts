@@ -64,4 +64,15 @@ export class PrismaPetsRepository implements PetsRepository {
     })
     return pets
   }
+
+  async getTotalByCity(city: string): Promise<number> {
+    const total = await prisma.pet.count({
+      where: {
+        org: {
+          city,
+        },
+      },
+    })
+    return total
+  }
 }

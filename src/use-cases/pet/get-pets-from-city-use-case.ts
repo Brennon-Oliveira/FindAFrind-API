@@ -1,5 +1,4 @@
 import { PetsRepository } from '@/repositories/pets-repository'
-import { Pet } from '@prisma/client'
 import {
   DEFAULT_PAGINATION_PAGE,
   isValidPaginationPage,
@@ -22,6 +21,7 @@ interface GetPetsFromCityUseCaseResponse {
     id: string
     name: string
   }[]
+  total: number
 }
 
 export class GetPetsFromCityUseCase {
@@ -48,6 +48,8 @@ export class GetPetsFromCityUseCase {
       size: pageSize,
     })
 
-    return { pets }
+    const total = await this.petsRepository.getTotalByCity(city)
+
+    return { pets, total }
   }
 }

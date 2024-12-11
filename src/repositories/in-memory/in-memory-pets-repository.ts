@@ -70,4 +70,16 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     return pets
   }
+
+  async getTotalByCity(city: string): Promise<number> {
+    const orgsIds = this.orgsRepository.items
+      .filter((org) => org.city === city)
+      .map((org) => org.id)
+
+    const total = this.items.filter((pet) =>
+      orgsIds.includes(pet.org_id),
+    ).length
+
+    return total
+  }
 }

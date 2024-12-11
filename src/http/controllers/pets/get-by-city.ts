@@ -17,7 +17,7 @@ export const getByCity = async (
   try {
     const createPetUseCase = makeGetPetsFromCityUseCase()
 
-    const { pets } = await createPetUseCase.execute({
+    const { pets, total } = await createPetUseCase.execute({
       city,
       page,
       pageSize,
@@ -25,6 +25,7 @@ export const getByCity = async (
 
     return reply.status(200).send({
       pets,
+      total,
     })
   } catch (err) {
     throw new Error('Internal server error')

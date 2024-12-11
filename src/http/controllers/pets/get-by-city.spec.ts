@@ -98,6 +98,7 @@ describe('Create Pet', () => {
 
     expect(response.status).toEqual(200)
     expect(response.body.pets).toHaveLength(4)
+    expect(response.body.total).toEqual(4)
 
     const paginatedResponse = await request(app.server)
       .get(`/pets`)
@@ -109,6 +110,7 @@ describe('Create Pet', () => {
       .set('Authorization', `Bearer ${token}`)
       .send()
 
+    expect(paginatedResponse.body.total).toEqual(4)
     expect(paginatedResponse.status).toEqual(200)
     expect(paginatedResponse.body.pets).toHaveLength(2)
     expect(paginatedResponse.body.pets[0]).toEqual({

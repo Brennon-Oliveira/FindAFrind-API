@@ -12,4 +12,5 @@ export interface PetsRepository {
       size: number
     },
   ): Promise<{ id: string; name: string }[]>
+  getTotalByCity(city: string): Promise<number>
 }

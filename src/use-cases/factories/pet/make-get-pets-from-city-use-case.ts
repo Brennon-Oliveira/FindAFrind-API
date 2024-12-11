@@ -4,6 +4,6 @@ import { GetPetsFromCityUseCase } from '@/use-cases/pet/get-pets-from-city-use-c
 export const makeGetPetsFromCityUseCase = (): GetPetsFromCityUseCase => {
   const petsRepository = new PrismaPetsRepository()
 
-  const getPetsFromOrgUseCase = new GetPetsFromCityUseCase(petsRepository)
-  return getPetsFromOrgUseCase
+  const getPetsFromCityUseCase = new GetPetsFromCityUseCase(petsRepository)
+  return getPetsFromCityUseCase
 }

@@ -106,10 +106,11 @@ describe('Get Pets From City Use Case', () => {
   })
 
   it('should be able to get all pets from a city paginated', async () => {
-    const { pets } = await sut.execute({
+    const { pets, total } = await sut.execute({
       city: mainOrg.city,
     })
 
+    expect(total).toEqual(3)
     expect(pets).toHaveLength(3)
     expect(pets).toContainEqual({
       id: petBob.id,
@@ -126,11 +127,12 @@ describe('Get Pets From City Use Case', () => {
   })
 
   it('should be able to return an empty list if not has pet in this city', async () => {
-    const { pets } = await sut.execute({
+    const { pets, total } = await sut.execute({
       city: emptyOrg.city,
     })
 
     expect(pets).toHaveLength(0)
+    expect(total).toEqual(0)
   })
 
   it('should not be able to return with an invalid page', async () => {
@@ -172,13 +174,14 @@ describe('Get Pets From City Use Case', () => {
         size: PetSize.MEDIUM,
       })
     }
-    const { pets } = await sut.execute({
+    const { pets, total } = await sut.execute({
       city: mainOrg.city,
       page: 2,
       pageSize: 25,
     })
 
     expect(pets).toHaveLength(25)
+    expect(total).toEqual(123)
     expect(pets[0]).toEqual({
       id: expect.any(String),
       name: 'Pet 22',
