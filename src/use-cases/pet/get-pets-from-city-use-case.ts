@@ -18,7 +18,10 @@ interface GetPetsFromCityUseCaseRequest {
 }
 
 interface GetPetsFromCityUseCaseResponse {
-  pets: Pet[]
+  pets: {
+    id: string
+    name: string
+  }[]
 }
 
 export class GetPetsFromCityUseCase {

@@ -111,9 +111,18 @@ describe('Get Pets From City Use Case', () => {
     })
 
     expect(pets).toHaveLength(3)
-    expect(pets).toContainEqual(expect.objectContaining(petBob))
-    expect(pets).toContainEqual(expect.objectContaining(petAlfred))
-    expect(pets).toContainEqual(expect.objectContaining(petCall))
+    expect(pets).toContainEqual({
+      id: petBob.id,
+      name: petBob.name,
+    })
+    expect(pets).toContainEqual({
+      id: petAlfred.id,
+      name: petAlfred.name,
+    })
+    expect(pets).toContainEqual({
+      id: petCall.id,
+      name: petCall.name,
+    })
   })
 
   it('should be able to return an empty list if not has pet in this city', async () => {
@@ -170,10 +179,9 @@ describe('Get Pets From City Use Case', () => {
     })
 
     expect(pets).toHaveLength(25)
-    expect(pets[0]).toEqual(
-      expect.objectContaining({
-        name: 'Pet 22',
-      }),
-    )
+    expect(pets[0]).toEqual({
+      id: expect.any(String),
+      name: 'Pet 22',
+    })
   })
 })

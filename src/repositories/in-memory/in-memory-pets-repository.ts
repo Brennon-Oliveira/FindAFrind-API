@@ -58,7 +58,7 @@ export class InMemoryPetsRepository implements PetsRepository {
       page: number
       size: number
     },
-  ): Promise<Pet[]> {
+  ): Promise<{ id: string; name: string }[]> {
     const orgsIds = this.orgsRepository.items
       .filter((org) => org.city === city)
       .map((org) => org.id)
@@ -66,8 +66,7 @@ export class InMemoryPetsRepository implements PetsRepository {
     const pets = this.items
       .filter((pet) => orgsIds.includes(pet.org_id))
       .splice((pagination.page - 1) * pagination.size, pagination.size)
-
-    console.log(pets)
+      .map((pet) => ({ name: pet.name, id: pet.id }))
 
     return pets
   }

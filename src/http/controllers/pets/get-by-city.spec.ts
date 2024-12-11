@@ -111,5 +111,9 @@ describe('Create Pet', () => {
 
     expect(paginatedResponse.status).toEqual(200)
     expect(paginatedResponse.body.pets).toHaveLength(2)
+    expect(paginatedResponse.body.pets[0]).toEqual({
+      id: expect.any(String),
+      name: expect.any(String),
+    })
   })
 })

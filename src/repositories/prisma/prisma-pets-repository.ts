@@ -48,7 +48,7 @@ export class PrismaPetsRepository implements PetsRepository {
       page: number
       size: number
     },
-  ): Promise<Pet[]> {
+  ): Promise<{ id: string; name: string }[]> {
     const pets = await prisma.pet.findMany({
       where: {
         org: {
@@ -57,6 +57,10 @@ export class PrismaPetsRepository implements PetsRepository {
       },
       skip: (pagination.page - 1) * pagination.size,
       take: pagination.size,
+      select: {
+        name: true,
+        id: true,
+      },
     })
     return pets
   }

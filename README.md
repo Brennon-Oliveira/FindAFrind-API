@@ -14,7 +14,7 @@
 * [ ] Deve ser possível ver todas as cidades pelo estado
 * [ ] Deve ser possível ver a quantidade de pets na cidade selecionada
 # RG (Regras de Negócio)
-* [ ] Um pet deve ter as informações:
+* [x] Um pet deve ter as informações:
   - Nome
   - Sobre (Máximo de 300 caracteres)
   - Idade
@@ -27,7 +27,7 @@
     - Ambos
   - Fotos (Mínimo 1)
   - Requisitos para adoção (Mínimo 1)
-* [ ] Para listar os pets, é obrigatório passar a cidade
+* [x] Para listar os pets, é obrigatório passar a cidade
 * [x] Para cadastrar uma ORG, precisa dos dados:
   - Nome do responsável
   - Email

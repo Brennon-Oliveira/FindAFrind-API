@@ -11,5 +11,5 @@ export interface PetsRepository {
       page: number
       size: number
     },
-  ): Promise<Pet[]>
+  ): Promise<{ id: string; name: string }[]>
 }
