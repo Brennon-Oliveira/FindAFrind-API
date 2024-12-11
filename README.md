@@ -3,8 +3,8 @@
 * [*] Deve ser possível atualizar um pet
 * [x] Deve ser possível atualizar os dados da ORG
 * [x] Deve ser possível marcar um pet como adotado
-* [ ] Deve ser possível listar todos os pets disponíveis para adoção de um cidade
-* [ ] Deve ser possível listar todos os pets da sua organização
+* [x] Deve ser possível listar todos os pets disponíveis para adoção de um cidade
+* [x] Deve ser possível listar todos os pets da sua organização
 * [ ] Deve ser possível filtrar pets por suas características
 * [ ] Deve ser possível visualizar detalhes de um pet para adoção
 * [x] Deve ser possível se cadastrar como uma ORG
@@ -44,14 +44,13 @@
   - Endereco
   - Whatsapp
 * [x] Para logar como uma organização, precisa do email e senha
-* [ ] Um pet deve estar ligado a uma org
-* [ ] O usuário que quer adotar entrará em contato com a ORG via WhatsApp
+* [x] Um pet deve estar ligado a uma org
+* [x] O usuário que quer adotar entrará em contato com a ORG via WhatsApp
 * [ ] Todos os filtros, além de cidade, são opcionais
-* [ ] Só deve ser possível cadastrar um pet numa cidade válida
-* [ ] As rotas de Admin só podem ser acessadas por um usuário logado na ORG
+* [x] As rotas de Admin só podem ser acessadas por um usuário logado na ORG
 # RNF (Requisitos Não Funcionais)
 * [x] A autenticação deve utilizar JWT
-* [ ] Deve-se utilizar a estratégia de Refresh Token
+* [x] Deve-se utilizar a estratégia de Refresh Token
 * [ ] O upload das imagens deve ocorrer numa ferramenta externa (Como aws bucket)
 * [ ] O upload das imagens deve ocorrer por meio de uma url pré assinada para a ferramenta externa escolhida
 * [ ] No banco, deve ser salvo apenas o endereço das imagens
